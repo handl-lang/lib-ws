@@ -1,0 +1,24 @@
+--- ws -- WebSocket client contract (RFC 6455).
+---
+--- Step-surface contract: a backend (`ws-c` over libcurl CONNECT_ONLY,
+--- `ws-whatwg-*` over host WebSocket APIs) prepares a handle, then
+--- drives the upgrade and frame I/O through nonblocking `*_step`
+--- arrows -- each performs one attempt and reports what the caller
+--- must wait for, so a `concurrent` scheduler can park the task on
+--- `active_socket`.
+---
+---   prepare(url, init)       -> Handle (Int)
+---   active_socket(h)         -> fd (Int)
+---   recv_step(h)             -> { frame: { op, payload, flags } }
+---                               | { again } | { err }
+---   send_step(h, buf, flags) -> { sent: Int } | { again } | { err }
+---   send_text(h, s) / send_binary(h, b) -- convenience forms
+---   close(h)                 -> unit
+---
+--- Frame `op`/`flags` vocabulary comes from the `ws_frame` contract.
+
+export Prepare      := (String, Init) ~[1]~> Handle
+export ActiveSocket := (Handle) ~> Int
+export RecvStep     := (Handle) ~[1]~> StepResult
+export SendStep     := (Handle, Bytes, Int) ~[1]~> StepResult
+export Close        := (Handle) ~[1]~> Unit
