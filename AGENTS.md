@@ -1,3 +1,33 @@
+# lib-ws
+
+The `ws` **port contract** — RFC 6455 client step-surface implemented
+by `ws-c` (libcurl) and `ws-whatwg-*` (host APIs). Pure `.hnl`.
+
+## Layout
+
+| path | role |
+| --- | --- |
+| `src/index.hnl` | the contract |
+| `pkg.hnl` | package manifest — `modules: ["ws"]` |
+| `scripts/hnl-gate.sh`, `ci.sh` | the gate / bupha entry |
+
+## Contract
+
+- Step-based WebSocket client surface (RFC 6455); backends:
+  `lib-ws-c` (libcurl transport for the `concurrent-epoll`
+  scheduler), `lib-ws-whatwg-c`/`lib-ws-whatwg-wasm` (WHATWG surface
+  over host APIs).
+
+## Verification
+
+```bash
+HNL=../host-cli/target/debug/hnl scripts/hnl-gate.sh
+```
+
+## License
+
+MIT.
+
 <!-- myco:agent-awareness -->
 
 ## Agent awareness
