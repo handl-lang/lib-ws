@@ -1,0 +1,17 @@
+--- ws -- RFC 6455 client contract smoke tests.
+---
+--- Contract-only repo: the `export … := sig` declarations surface as
+--- non-null capability values. Backends (`ws-c`, `ws-whatwg-*`) supply
+--- the implementations; nothing here is callable without a socket.
+
+from "./index" import * as m
+
+test_prepare := assert m.Prepare != null
+
+test_active_socket := assert m.ActiveSocket != null
+
+test_recv_step := assert m.RecvStep != null
+
+test_send_step := assert m.SendStep != null
+
+test_close := assert m.Close != null
