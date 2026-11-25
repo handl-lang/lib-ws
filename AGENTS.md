@@ -9,7 +9,7 @@ by `ws-c` (libcurl) and `ws-whatwg-*` (host APIs). Pure `.hnl`.
 | --- | --- |
 | `src/index.hnl` | the contract |
 | `pkg.hnl` | package manifest — `modules: ["ws"]` |
-| `scripts/hnl-gate.sh`, `ci.sh` | the gate / bupha entry |
+| `scripts/hnl-gate.sh`, `workflows/gate.yaml` | the gate / bupha entry |
 
 ## Contract
 
