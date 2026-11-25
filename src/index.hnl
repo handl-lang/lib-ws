@@ -17,8 +17,8 @@
 ---
 --- Frame `op`/`flags` vocabulary comes from the `ws_frame` contract.
 
-export Prepare      := (String, Init) ~[1]~> Handle
+export Prepare      := (String, Init) ~>[1] Handle
 export ActiveSocket := (Handle) ~> Int
-export RecvStep     := (Handle) ~[1]~> StepResult
-export SendStep     := (Handle, Bytes, Int) ~[1]~> StepResult
-export Close        := (Handle) ~[1]~> Unit
+export RecvStep     := (Handle) ~>[1] StepResult
+export SendStep     := (Handle, Bytes, Int) ~>[1] StepResult
+export Close        := (Handle) ~>[1] Unit
